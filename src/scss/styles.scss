@@ -1,10 +1,11 @@
 @charset 'UTF-8';
+@import "~bootstrap/scss/bootstrap";
 
 $grey: #ccc;
 $color-orange: #f98a09;
 
 body {
-    background: $color-orange;
+    background: $grey;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;

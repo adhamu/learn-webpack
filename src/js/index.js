@@ -1,4 +1,3 @@
-(() => {
-  const IAmES6 = `I must be transpiled by Babel`;
-  console.log(IAmES6);
-})();
+import 'jquery';
+import 'popper.js';
+import 'bootstrap';
