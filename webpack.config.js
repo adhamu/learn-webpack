@@ -1,5 +1,6 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const path = require('path');
 
 module.exports = {
@@ -7,6 +8,9 @@ module.exports = {
     output: {
         filename: 'js/index.js',
         path: path.join(__dirname, './dist/')
+    },
+    devServer: {
+        contentBase: "./dist"
     },
     module: {
         rules: [{
@@ -56,7 +60,20 @@ module.exports = {
             filename: './index.html'
         }),
         new ExtractTextPlugin({
-            filename: "css/main.css"
+            filename: 'css/styles.css'
+        }),
+        new UglifyJsPlugin({
+            test: /\.js($|\?)/i,
+            sourceMap: false,
+            uglifyOptions: {
+                ie8: false,
+                ecma: 6,
+                output: {
+                    comments: false,
+                    beautify: false
+                },
+                warnings: false
+            }
         })
     ]
 };
