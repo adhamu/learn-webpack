@@ -1,0 +1,17 @@
+@charset 'UTF-8';
+
+$grey: #ccc;
+$color-orange: #f98a09;
+
+body {
+    background: $color-orange;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    font-size: 5em;
+}
