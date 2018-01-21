@@ -10,7 +10,7 @@ module.exports = {
         path: path.join(__dirname, './dist/')
     },
     devServer: {
-        contentBase: "./dist"
+        contentBase: './dist'
     },
     module: {
         rules: [{
@@ -37,11 +37,11 @@ module.exports = {
             use: ExtractTextPlugin.extract({
                 use: [
                 {
-                    loader: "css-loader",
+                    loader: 'css-loader',
                     options: { minimize: true }
                 },
-                { loader: "postcss-loader" },
-                { loader: "sass-loader" }
+                { loader: 'postcss-loader' },
+                { loader: 'sass-loader' }
                 ]
             })
         }, {
