@@ -1,6 +1,5 @@
-const HtmlWebPackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const path = require('path');
 
 module.exports = {
@@ -15,6 +14,7 @@ module.exports = {
     module: {
         rules: [{
             test: /\.html$/,
+            include: path.resolve(__dirname, 'src'),
             use: [{
                 loader: 'html-loader',
                 options: {
@@ -23,6 +23,7 @@ module.exports = {
             }]
         }, {
             test: /\.(png|jpe?g)/i,
+            include: path.resolve(__dirname, 'src'),
             use: [{
                 loader: 'url-loader',
                 options: {
@@ -34,6 +35,7 @@ module.exports = {
             }]
         }, {
             test: /\.scss$/,
+            include: path.resolve(__dirname, 'src'),
             use: ExtractTextPlugin.extract({
                 use: [
                 {
@@ -46,6 +48,7 @@ module.exports = {
             })
         }, {
             test: /\.js$/,
+            include: path.resolve(__dirname, 'src'),
             use: {
               loader: 'babel-loader',
               options: {
@@ -55,25 +58,9 @@ module.exports = {
         }]
     },
     plugins: [
-        new HtmlWebPackPlugin({
-            template: './src/index.html',
-            filename: './index.html'
-        }),
+        new webpack.optimize.ModuleConcatenationPlugin(),
         new ExtractTextPlugin({
             filename: 'css/styles.css'
-        }),
-        new UglifyJsPlugin({
-            test: /\.js($|\?)/i,
-            sourceMap: false,
-            uglifyOptions: {
-                ie8: false,
-                ecma: 6,
-                output: {
-                    comments: false,
-                    beautify: false
-                },
-                warnings: false
-            }
         })
     ]
 };
